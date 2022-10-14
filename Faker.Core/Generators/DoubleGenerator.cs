@@ -2,7 +2,7 @@ public class DoubleGenerator : IValueGenerator
 {
     public bool CanGenerate(Type t)
     {
-        return t == typeof(char);
+        return t == typeof(double);
     }
 
     public object Generate(Type typeToGenerate, IGeneratorContext context)

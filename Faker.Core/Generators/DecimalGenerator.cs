@@ -2,7 +2,7 @@ public class DecimalGenerator : IValueGenerator
 {
     public bool CanGenerate(Type t)
     {
-        return t == typeof(char);
+        return t == typeof(decimal);
     }
 
     public object Generate(Type typeToGenerate, IGeneratorContext context)
