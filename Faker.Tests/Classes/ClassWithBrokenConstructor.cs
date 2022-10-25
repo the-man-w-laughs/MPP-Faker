@@ -9,6 +9,6 @@ public class ClassWithBrokenConstructor : Class
 
         public ClassWithBrokenConstructor(string prop1, string prop2)
         {
-            throw new Exception("Never gonna give you up");
+            throw new Exception("To be or not to be. Not to be.");
         }
     }

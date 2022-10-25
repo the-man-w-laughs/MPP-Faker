@@ -117,7 +117,8 @@ public class UnitTest1
         var cycleResolveService = new CycleResolveService();
         Faker sut = new Faker(generatorService, cycleResolveService);
         var result = sut.Create<string>();
-        Assert.NotEqual(Activator.CreateInstance(typeof(string)), result);
+        var emptyString = "";
+        Assert.NotEqual(emptyString, result);
     }
 
     [Fact]
@@ -127,13 +128,14 @@ public class UnitTest1
         var cycleResolveService = new CycleResolveService();
         Faker sut = new Faker(generatorService, cycleResolveService);
         var result = sut.Create<Class>();
-        Assert.NotNull(result);     
-        Assert.NotEqual(Activator.CreateInstance(typeof(string)), result.FirstName);
-        Assert.NotEqual(Activator.CreateInstance(typeof(string)), result.LastName);
+        Assert.NotNull(result);      
+        var emptyString = "";   
+        Assert.NotEqual(emptyString, result.FirstName);        
+        Assert.NotEqual(emptyString, result.LastName);
         Assert.NotEqual(Activator.CreateInstance(typeof(int)), result.Age);
         Assert.NotNull(result.Children); 
-        Assert.NotEqual(Activator.CreateInstance(typeof(string)), result.Children.FirstName);
-        Assert.NotEqual(Activator.CreateInstance(typeof(string)), result.Children.LastName);
+        Assert.NotEqual(emptyString, result.Children.FirstName);
+        Assert.NotEqual(emptyString, result.Children.LastName);
         Assert.NotEqual(Activator.CreateInstance(typeof(int)), result.Children.Age);
         Assert.Null(result.Children.Children);   
 
@@ -147,19 +149,21 @@ public class UnitTest1
         Faker sut = new Faker(generatorService, cycleResolveService);
         var result = sut.Create<ClassWithPrivateSetter>();
         Assert.NotNull(result.PrivateProperty);
+        Activator.CreateInstance(typeof(int));
         Assert.Equal(Activator.CreateInstance(typeof(int)), result.PrivateProperty);
+
     }
 
     [Fact]
     public void ShouldUseConstructorWithMoreParams()
-    {
-        // TODO: Что за тест?         
+    {        
         var generatorService = new GeneratorService();
         var cycleResolveService = new CycleResolveService();
         Faker sut = new Faker(generatorService, cycleResolveService);
         var result = sut.Create<ClassWithConstructor>();
         Assert.NotNull(result);
-        Assert.NotEqual(Activator.CreateInstance(typeof(int)), result.PrivateProperty);
+        Assert.NotEqual(Activator.CreateInstance(typeof(int)), result.PrivateProperty1);
+        Assert.NotEqual(Activator.CreateInstance(typeof(int)), result.PrivateProperty2);
     }
 
     [Fact]
@@ -192,12 +196,12 @@ public class UnitTest1
     public void ShouldUseGeneratorFromConfigUsingConstructor()
     {
         var config = new GeneratorConfig();
-        config.Add<ClassWithConstructor, string, NameGenerator>(u => u.PrivateProperty);
+        config.Add<ClassWithConstructor, string, NameGenerator>(u => u.PrivateProperty1);
         var generatorService = new GeneratorService(config);
         var cycleResolveService = new CycleResolveService();
         Faker sut = new Faker(generatorService, cycleResolveService);
         var result = sut.Create<ClassWithConstructor>();
         Assert.NotNull(result);
-        Assert.Equal("Nazar", result.PrivateProperty);
+        Assert.Equal("Nazar", result.PrivateProperty1);
     }
 }
