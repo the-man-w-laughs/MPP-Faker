@@ -1,4 +1,4 @@
 public interface IGeneratorService
-    {
-        object Generate(Type type, IGeneratorContext context, string? name = null);
-    }
+{
+    object Generate(Type type, IGeneratorContext context, string? name = null);
+}
