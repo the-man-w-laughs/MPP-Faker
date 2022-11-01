@@ -1,4 +1,4 @@
-    public class UnsupportedTypeException : Exception
-    {
-        
-    }
+public class UnsupportedTypeException : Exception
+{
+
+}

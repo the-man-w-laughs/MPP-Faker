@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 
+// keeps generators for each property by name
 public class GeneratorConfig : IGeneratorConfig
 {
     Dictionary<string, IValueGenerator> _generatorsByName = new Dictionary<string, IValueGenerator>();
@@ -10,7 +11,8 @@ public class GeneratorConfig : IGeneratorConfig
         {
             throw new Exception("Expression body should be property or field");
         }
-        var generator = (C)Activator.CreateInstance(typeof(C), new object[] { });
+
+        var generator = (C)Activator.CreateInstance(typeof(C), null);
         _generatorsByName.Add(member.Member.Name, generator);
     }
 

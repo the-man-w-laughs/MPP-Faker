@@ -9,7 +9,7 @@ public class FloatGenerator : IValueGenerator
     {
         var buffer = new byte[4];
         context.Random.NextBytes(buffer);
-        var result = BitConverter.ToSingle(buffer,0);
+        var result = BitConverter.ToSingle(buffer, 0);
         return result;
     }
 }

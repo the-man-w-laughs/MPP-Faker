@@ -8,5 +8,8 @@ public class GeneratorContext : IGeneratorContext
 
     public string Alphabet { get; } = "abcdefghijklmnopqrstuvwxyz";
     public Random Random { get; }
+
+    // to initialize first list's element
+    // link to the Faker that contains this Context
     public IFaker Faker { get; }
 }

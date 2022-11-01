@@ -11,12 +11,11 @@ public class ListGenerator : IValueGenerator
         var argument = typeToGenerate.GetGenericArguments().First();
         var generic = typeof(List<>).MakeGenericType(argument);
         MethodInfo method = typeof(Faker).GetMethod("Create")!.MakeGenericMethod(new Type[] { argument });
-        var result = method.Invoke(context.Faker, new object[] { });
-        // TODO: что за new object[]?
+        var result = method.Invoke(context.Faker, null);
 
         var list = Activator.CreateInstance(generic);
         var addMethod = generic.GetMethod("Add");
         addMethod!.Invoke(list, new object[] { result! });
-        return list!; 
+        return list!;
     }
 }

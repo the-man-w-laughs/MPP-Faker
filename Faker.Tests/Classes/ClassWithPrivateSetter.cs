@@ -1,4 +1,4 @@
 public class ClassWithPrivateSetter : Class
-    {
-        public int PrivateProperty { get; }
-    }
+{
+    public int PrivateProperty { get; }
+}

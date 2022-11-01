@@ -128,17 +128,16 @@ public class UnitTest1
         var cycleResolveService = new CycleResolveService();
         Faker sut = new Faker(generatorService, cycleResolveService);
         var result = sut.Create<Class>();
-        Assert.NotNull(result);      
-        var emptyString = "";   
-        Assert.NotEqual(emptyString, result.FirstName);        
+        Assert.NotNull(result);
+        var emptyString = "";
+        Assert.NotEqual(emptyString, result.FirstName);
         Assert.NotEqual(emptyString, result.LastName);
         Assert.NotEqual(Activator.CreateInstance(typeof(int)), result.Age);
-        Assert.NotNull(result.Children); 
+        Assert.NotNull(result.Children);
         Assert.NotEqual(emptyString, result.Children.FirstName);
         Assert.NotEqual(emptyString, result.Children.LastName);
         Assert.NotEqual(Activator.CreateInstance(typeof(int)), result.Children.Age);
-        Assert.Null(result.Children.Children);   
-
+        Assert.Null(result.Children.Children);
     }
 
     [Fact]
@@ -156,7 +155,7 @@ public class UnitTest1
 
     [Fact]
     public void ShouldUseConstructorWithMoreParams()
-    {        
+    {
         var generatorService = new GeneratorService();
         var cycleResolveService = new CycleResolveService();
         Faker sut = new Faker(generatorService, cycleResolveService);
@@ -190,6 +189,7 @@ public class UnitTest1
         Assert.NotNull(result);
         Assert.Equal("Nazar", result.FirstName);
         Assert.NotEqual("Nazar", result.LastName);
+        Assert.NotEqual("", result.LastName);
     }
 
     [Fact]

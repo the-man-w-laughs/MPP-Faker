@@ -1,4 +1,4 @@
 ﻿public interface IFaker
 {
-  public type Create<type>();
+    public type Create<type>();
 }

@@ -9,7 +9,7 @@ public class DecimalGenerator : IValueGenerator
     {
         byte scale = (byte)context.Random.Next(29);
         bool sign = context.Random.Next(2) == 1;
-        var result = new decimal (context.Random.Next(), 
+        var result = new decimal(context.Random.Next(),
                         context.Random.Next(),
                         context.Random.Next(),
                         sign,
