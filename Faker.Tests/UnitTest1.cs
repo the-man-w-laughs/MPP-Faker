@@ -122,6 +122,16 @@ public class UnitTest1
     }
 
     [Fact]
+    public void UrlGeneratorShouldReturnValidUrl()
+    {
+        var generatorService = new GeneratorService();
+        var cycleResolveService = new CycleResolveService();
+        Faker sut = new Faker(generatorService, cycleResolveService);
+        var result = sut.Create<Uri>();        
+        Assert.Matches(@"^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?", result.ToString());
+    }
+
+    [Fact]
     public void ShouldFakeUserTypeWithCyclicDependency()
     {
         var generatorService = new GeneratorService();
@@ -147,7 +157,6 @@ public class UnitTest1
         var cycleResolveService = new CycleResolveService();
         Faker sut = new Faker(generatorService, cycleResolveService);
         var result = sut.Create<ClassWithPrivateSetter>();
-        Assert.NotNull(result.PrivateProperty);
         Activator.CreateInstance(typeof(int));
         Assert.Equal(Activator.CreateInstance(typeof(int)), result.PrivateProperty);
 
@@ -184,12 +193,13 @@ public class UnitTest1
         config.Add<Class, string, NameGenerator>(u => u.FirstName);
         var generatorService = new GeneratorService(config);
         var cycleResolveService = new CycleResolveService();
+        var emptyString = "";
         Faker sut = new Faker(generatorService, cycleResolveService);
         var result = sut.Create<Class>();
         Assert.NotNull(result);
         Assert.Equal("Nazar", result.FirstName);
         Assert.NotEqual("Nazar", result.LastName);
-        Assert.NotEqual("", result.LastName);
+        Assert.NotEqual(emptyString, result.LastName);
     }
 
     [Fact]

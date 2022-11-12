@@ -1,4 +1,4 @@
-using System.Reflection;
+// using System.Reflection;
 
 // Contains
 // 'Generate' method that returns specific value
@@ -56,6 +56,7 @@ public class GeneratorService : IGeneratorService
         _generators.Add(new SByteGenerator());
         _generators.Add(new ShortGenerator());
         _generators.Add(new StringGenerator());
+        _generators.Add(new UriGenerator());
 
         // _generators = new List<IValueGenerator>();
         // var assembly = Assembly.GetExecutingAssembly();
