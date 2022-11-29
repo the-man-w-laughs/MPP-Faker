@@ -18,17 +18,6 @@ public class UriGenerator : IValueGenerator
         return result.ToString();
     }
 
-    // private string getCombinedString(IGeneratorContext context,int minLen, int MaxLen){
-    //     string result = "";
-
-    //     var len = context.Random.Next(minLen,MaxLen);
-    //     for (int i = 0; i < len; i++){
-    //         var index = context.Random.Next(context.Alphabet.Length);            
-    //         result.Append(context.Alphabet[index]);
-    //     }
-    //     return result;
-    // }
-
     public object Generate(Type typeToGenerate, IGeneratorContext context)
     {
         // init Fragment
